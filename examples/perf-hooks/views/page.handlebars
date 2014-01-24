@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Adding perf hooks through patch API</title>
+</head>
+<body>
+
+    <h1>Measuring performance...</h1>
+
+    <script>{{{state}}}</script>
+    <script src="http://yui.yahooapis.com/3.12.0/yui/yui-min.js"></script>
+    <script src="http://l3.yimg.com/zz/combo?os/mit/td/td-server-my-0.1.548/asset-loader-min-988bf153.js"></script>
+    <script>
+    app.yui.use('stencil-toggle','stencil','stencil-carousel','stencil-bquery','stencil-sticker','stencil-scrollview','af-applets','app-base','af-rapid', function (Y) {
+        var timers = JSON.stringify(YUI.Env.perf, null, 4);
+        console.log(timers);
+        Y.one('body').setContent('<pre>' + timers + '</pre>');
+    });
+    </script>
+</body>
+</html>
