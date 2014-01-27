@@ -19,16 +19,22 @@
     </div>
 
     <script>{{{state}}}</script>
+
+<script>
+YUI_config.seed = [
+//    'https://rawgithub.com/ekashida/yui3/perf-hooks-built/build/yui/yui-debug.js',
+    'https://rawgithub.com/ekashida/yui3/perf-hooks-disable-populate-built/build/yui/yui-debug.js',
+    'https://s.yimg.com/zz/combo?os/mit/td/td-server-my-0.1.548/asset-loader-988bf153.js',
+    '/demo-0.0.1/loader-demo/loader-demo-debug.js'
+];
+</script>
+<script src="https://rawgithub.com/ekashida/8679996/raw/c33fe707879bea8f2e00caca05cacf242db55e43/setup.js"></script>
+
     <script>
-    app.yui.use('alerts-model', 'binder-index', function (Y) {
-        // creating a model based on `alerts-model` module
-        var model = new Y.Model.Alerts({
-            tagline: 'testing some data thru alerts-model',
-            tellme: 'NY is nice too, during summer!'
-        });
-        // using a binder to render a template and with the data from model
-        Y.Binders.index.update(Y.one('#content'), model.toJSON());
+    app.yui.use('node', function (Y) {
+        Y.one('body').append('<pre>' + JSON.stringify(YUI.Env.perf, null, 4) + '</pre>');
     });
     </script>
+
 </body>
 </html>
